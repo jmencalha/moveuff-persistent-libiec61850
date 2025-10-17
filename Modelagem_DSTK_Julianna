@@ -1,0 +1,838 @@
+/* ------------------------------------------------------------------
+ * MODELAGEM NÓ LÓGICO DSTK 
+ * ------------------------------------------------------------------ */
+
+LogicalNode iedModel_BIKE_DSTK1 = {
+    LogicalNodeModelType,  /* Identifica o tipo da estrutura, diz que esse bloco é um nó lógico */
+    "DSTK1",               /* É o nome do nó lógico conforme a norma IEC 61850, onde DSTK é a classe da LN e "1" é a instância (pode existir mais de uma) */
+    (ModelNode*) &iedModel_BIKE, /* Nó pai, que é o LD onde o LN será inserido*/
+    (ModelNode*) &iedModel_BIKE_XSWI1,        /* Irmão que será´chamado depois desse LN */
+    (ModelNode*) &iedModel_BIKE_DSTK1_NamPlt, /* Filhote, o primeiro DO definido dentro do nó lógico.*/
+};
+
+/* ------------------- Data Object: NamPlt (CDC: LPL) ------------------- */
+/* Contém informações de identificação do nó lógico, não mede nada e nem controla nada.*/
+
+DataObject iedModel_BIKE_DSTK1_NamPlt = {
+    DataObjectModelType, /*Diz que essa instância é um DO*/
+    "NamPlt",            /*Nome do DO*/
+    (ModelNode*) &iedModel_BIKE_DSTK1, /*Nó pai, que é o LN onde o DO será inserido*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcSt, /*Irmão que será chamado depois desse DO*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_NamPlt_vendor, /*Filhote, o primeiro DA definido dentro do DO.*/
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_NamPlt_vendor = {  
+    DataAttributeModelType, /*Diz que essa instância é um DA*/
+    "vendor",
+    (ModelNode*) &iedModel_BIKE_DSTK1_NamPlt, /*Nó pai, que é o DO onde o DA será inserido*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_NamPlt_swRev, /*Irmão que será chamado depois desse DA*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0, /*Tamanho fixo*/
+    IEC61850_FC_DC, /*FC = DC (Dado pela norma IEC 61850)*/
+    IEC61850_VISIBLE_STRING_255, /*Tipo de dado = Visible String até 255 caracteres*/
+    0, /*Sem trigger*/
+    NULL, /*Sem valor inicial*/
+    0}; 
+
+DataAttribute iedModel_BIKE_DSTK1_NamPlt_swRev = {
+    DataAttributeModelType,
+    "swRev",
+    (ModelNode*) &iedModel_BIKE_DSTK1_NamPlt,
+    (ModelNode*) &iedModel_BIKE_DSTK1_NamPlt_ldNs,
+    NULL,
+    0,
+    IEC61850_FC_DC,
+    IEC61850_VISIBLE_STRING_255,
+    0,
+    NULL,
+    0};
+
+ DataAttribute iedModel_BIKE_DSTK1_NamPlt_ldNs = {
+    DataAttributeModelType,
+    "ldNs", 
+    (ModelNode*) &iedModel_BIKE_DSTK1_NamPlt,
+    NULL, /*Não tem irmão, então é NULL*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0, /*Tamanho fixo*/
+    IEC61850_FC_EX, /*FC = EX (Dado pela norma IEC 61850)*/
+    IEC61850_VISIBLE_STRING_255,
+    0, /*Sem trigger*/
+    NULL,
+    0};
+
+
+
+/* ------------------- Data Object: StcSt (CDC: SPS) ------------------- */
+/* Contém informações sobre o estado do sistema, como alarmes e eventos.*/
+
+
+DataObject iedModel_BIKE_DSTK1_StcSt = {
+    DataObjectModelType,
+    "StcSt", /*Nome do DO*/
+    (ModelNode*) &iedModel_BIKE_DSTK1, /*Nó pai, que é o LN onde o DO será inserido*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_CelVTrCnt, /*Irmão que será chamado depois desse DO*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcSt_stVal, /*Filhote, o primeiro DA definido dentro do DO.*/
+    0  
+};
+
+DataAttribute iedModel_BIKE_DSTK1_StcSt_stVal = {
+    DataAttributeModelType,
+    "stVal", /*Valor do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcSt, /*Nó pai, que é o DO onde o DA será inserido*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcSt_q, /*Irmão que será chamado depois desse DA*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0, /*Tamanho fixo*/
+    IEC61850_FC_ST,   /*FC = ST (Dado pela norma IEC 61850)*/
+    IEC61850_BOOLEAN, /*Tipo de dado = Booleano (verdadeiro ou falso)*/
+    0 + TRG_OPT_DATA_CHANGED, /*Gatilho para enviar uma mensagem quando o valor mudar*/
+    NULL, /*Sem valor inicial*/
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_StcSt_q = {
+    DataAttributeModelType,
+    "q",   /*Qualidade do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcSt, /*Nó pai, que é o DO onde o DA será inserido*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcSt_t, /*Irmão que será chamado depois desse DA*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0,  /*Tamanho fixo*/
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_QUALITY, /*Tipo de dado = Qualidade*/
+    0 + TRG_OPT_QUALITY_CHANGED, /*Gatilho para enviar uma mensagem quando a qualidade mudar*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_StcSt_t = {
+    DataAttributeModelType,
+    "t", /*Timestamp do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcSt, /*Nó pai, que é o DO onde o DA será inserido*/
+    NULL, /*Não tem irmão, então é NULL*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0,
+    IEC61850_FC_ST,
+    IEC61850_TIMESTAMP,
+    0,
+    NULL,
+    0}; /* Fim do DA t */
+
+/* ------------------- Data Object: CelVTrCnt (CDC:INS) ------------------- */
+/* Contador de eventos de sobre/subtensão da célula, indica quantas vezes uma célula ultrapassou valores pré definidos */
+
+DataObject iedModel_BIKE_DSTK1_CelVTrCnt = {
+    DataObjectModelType,
+    "CelVTrCnt",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcLodTms, /*Irmão que será chamado depois desse DO*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_CelVTrCnt_stVal,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_CelVTrCnt_stVal = {
+    DataAttributeModelType,
+    "stVal",   /*Valor do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_CelVTrCnt,
+    (ModelNode*) &iedModel_BIKE_DSTK1_CelVTrCnt_q,
+    NULL, /*Não tem filhote, então é NULL*/
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_INT32, /*Tipo de dado = Inteiro de 32 bits*/
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE, /*Gatilho para enviar uma mensagem quando o valor mudar ou for atualizado*/
+    NULL, /*Sem valor inicial*/
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_CelVTrCnt_q = {
+    DataAttributeModelType,
+    "q", /*Qualidade do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_CelVTrCnt,
+    (ModelNode*) &iedModel_BIKE_DSTK1_CelVTrCnt_t, 
+    NULL,
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_QUALITY, /*Tipo de dado = Qualidade*/
+    0 + TRG_OPT_QUALITY_CHANGED, /*Gatilho para enviar uma mensagem quando a qualidade mudar*/
+    NULL, /*Sem valor inicial*/
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_CelVTrCnt_t = {
+    DataAttributeModelType,
+    "t", /*Timestamp do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_CelVTrCnt, /*Nó pai, que é o DO onde o DA será inserido*/
+    NULL, /*Não tem irmão, então é NULL*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_TIMESTAMP, /*Tipo de dado = Timestamp*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+/* ------------------------- Data Object: StcLodTms (CDC: INS) ------------------------- */
+/* Conta quantas vezes o dispositivo entrou em carga constante. */
+
+
+DataObject iedModel_BIKE_DSTK1_StcLodTms = {
+    DataObjectModelType,
+    "StcLodTms",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_MaintTms, /*Irmão que será chamado depois desse DO*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcLodTms_stVal, /*Filhote, o primeiro DA definido dentro do DO.*/
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_StcLodTms_stVal = {
+    DataAttributeModelType,
+    "stVal",
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcLodTms, /*Nó pai, que é o DO onde o DA será inserido*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcLodTms_q, /*Irmão que será chamado depois desse DA*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0,
+    IEC61850_FC_ST, /*FC = ST (status)*/
+    IEC61850_INT32, /*Tipo de dado = Inteiro de 32 bits*/
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE, /*Gatilho para enviar uma mensagem quando o valor mudar (dchg) ou for atualizado (dupd)*/
+    NULL, /*Sem valor inicial*/
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_StcLodTms_q = {
+    DataAttributeModelType,
+    "q", /*Qualidade do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcLodTms,
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcLodTms_t, /*Irmão que será chamado depois desse DA*/
+    NULL,
+    0, /*Tamanho fixo*/
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_QUALITY, /*Tipo de dado = Qualidade*/
+    0 + TRG_OPT_QUALITY_CHANGED, /*Gatilho para enviar uma mensagem quando a qualidade mudar*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_StcLodTms_t = {
+    DataAttributeModelType,
+    "t", /*Timestamp do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcLodTms, /*Nó pai, que é o DO onde o DA será inserido*/
+    NULL, /*Não tem irmão, então é NULL*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0, /*Tamanho fixo*/
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_TIMESTAMP, /*Tipo de dado = Timestamp*/
+    0, /*Sem gatilho*/
+    NULL, 
+    0};
+
+
+/* ------------------- Data Object: MaintTms (CDC:INS) ------------------- */
+/*É um contador que registra quantas vezes o equipamento entrou em manutenção.*/
+
+DataObject iedModel_BIKE_DSTK1_MaintTms = {
+    DataObjectModelType,
+    "MaintTms",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_Beh, /*Irmão que será chamado depois desse DO*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_MaintTms_stVal,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_MaintTms_stVal = {
+    DataAttributeModelType,
+    "stVal", /*Valor do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_MaintTms,
+    (ModelNode*) &iedModel_BIKE_DSTK1_MaintTms_q,
+    NULL,
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_INT32, /*Tipo de dado = Inteiro de 32 bits*/
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE, /*Gatilho para enviar uma mensagem quando o valor mudar ou for atualizado*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_MaintTms_q = {
+    DataAttributeModelType,
+    "q",
+    (ModelNode*) &iedModel_BIKE_DSTK1_MaintTms,
+    (ModelNode*) &iedModel_BIKE_DSTK1_MaintTms_t,
+    NULL,
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_QUALITY, /*Tipo de dado = Qualidade*/
+    0 + TRG_OPT_QUALITY_CHANGED, /*Gatilho para enviar uma mensagem quando a qualidade mudar*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_MaintTms_t = {
+    DataAttributeModelType,
+    "t", /*Timestamp do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_MaintTms, /*Nó pai, que é o DO onde o DA será inserido*/
+    NULL, /*Não tem irmão, então é NULL*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0, 
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_TIMESTAMP, /*Tipo de dado = Timestamp*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+/* ------------------- Data Object: Beh (CDC: ENS) ------------------- */
+/*Indica em que modo de opração o LN está, tipo operando, bloqueado, em teste, etc*/
+
+DataObject iedModel_BIKE_DSTK1_Beh = {
+    DataObjectModelType,
+    "Beh",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_Health,
+    (ModelNode*) &iedModel_BIKE_DSTK1_Beh_stVal,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_Beh_stVal = {
+    DataAttributeModelType,
+    "stVal", /*Valor do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_Beh, /*Nó pai, que é o DO onde o DA será inserido*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_Beh_q, /*Irmão que será chamado depois desse DA*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_BEHAVIOURMODE, /*Tipo de dado = BehaviourMode*/
+    0 + TRG_OPT_DATA_CHANGED, /*Gatilho para enviar uma mensagem quando o valor mudar*/
+    NULL, /*Sem valor inicial*/
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_Beh_q = {
+    DataAttributeModelType,
+    "q", /*Qualidade do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_Beh,
+    (ModelNode*) &iedModel_BIKE_DSTK1_Beh_t,
+    NULL,
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_QUALITY, /*Tipo de dado = Qualidade*/
+    0 + TRG_OPT_QUALITY_CHANGED, /*Gatilho para enviar uma mensagem quando a qualidade mudar*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_Beh_t = {
+    DataAttributeModelType,
+    "t",
+    (ModelNode*) &iedModel_BIKE_DSTK1_Beh,
+    NULL, /*Não tem irmão, então é NULL*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0,
+    IEC61850_FC_ST,  /*FC = ST*/
+    IEC61850_TIMESTAMP, /*Tipo de dado = Timestamp*/
+    0,  /*Sem gatilho*/
+    NULL,
+    0};
+
+/* ------------------- Data Object: Health (CDC: ENS) ------------------- */
+/*Indica a condição operacional do LN, como normal, falha, manutenção necessária, etc.*/
+
+DataObject iedModel_BIKE_DSTK1_Health = {
+    DataObjectModelType,
+    "Health",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct, /*Irmão que será chamado depois desse DO*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_Health_stVal,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_Health_stVal = {
+    DataAttributeModelType,
+    "stVal",
+    (ModelNode*) &iedModel_BIKE_DSTK1_Health,
+    (ModelNode*) &iedModel_BIKE_DSTK1_Health_q,
+    NULL,
+    0,
+    IEC61850_FC_ST,
+    IEC61850_HEALTHKIND, /*Tipo de dado = HealthKind*/
+    0 + TRG_OPT_DATA_CHANGED, /*Gatilho para enviar uma mensagem quando o valor mudar*/
+    NULL, /*Sem valor inicial*/
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_Health_q = {
+    DataAttributeModelType,
+    "q", /*Qualidade do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_Health,
+    (ModelNode*) &iedModel_BIKE_DSTK1_Health_t,
+    NULL,
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_QUALITY, /*Tipo de dado = Qualidade*/
+    0 + TRG_OPT_QUALITY_CHANGED, /*Gatilho para enviar uma mensagem quando a qualidade mudar*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_Health_t = {
+    DataAttributeModelType,
+    "t", /*Timestamp do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_Health,
+    NULL,
+    NULL,
+    0,
+    IEC61850_FC_ST, /*FC = ST*/
+    IEC61850_TIMESTAMP, /*Tipo de dado = Timestamp*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+/* ------------------- Data Object: StcEfcPct (CDC: MV) ------------------- */
+/*Representa a eficiência do dispositivo em regime constante, sem variações loucas*/
+
+
+DataObject iedModel_BIKE_DSTK1_StcEfcPct = {
+    DataObjectModelType,
+    "StcEfcPct",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV,
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct_instMag,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_StcEfcPct_instMag = {
+    DataAttributeModelType,
+    "instMag", /*Magnitude instantânea medida, valor numérico em tempo real das variáveis do sistema*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct,
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct_mag, /*Irmão que será chamado depois desse DA*/
+    NULL,
+    0, /*Tamanho fixo*/
+    IEC61850_FC_MX, /*FC = MX (medição)*/ 
+    IEC61850_FLOAT32, /*Tipo de dado = Float32 (valor de ponto flutuante de 32 bits)*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_StcEfcPct_mag = {
+    DataAttributeModelType,
+    "mag", /*Valor da magnitude medida*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct,
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct_q,
+    NULL,
+    0,
+    IEC61850_FC_MX, /*FC = MX*/
+    IEC61850_ANALOGUEVALUE, /*Tipo de dado = AnalogueValue*/
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE, /*Gatilho para enviar uma mensagem quando o valor mudar (dchg) ou for atualizado (dupd)*/
+    NULL, /*Sem valor inicial*/
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_StcEfcPct_q = {
+    DataAttributeModelType,
+    "q", /*Qualidade do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct,
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct_t,
+    NULL,
+    0,
+    IEC61850_FC_MX, /*FC = MX*/
+    IEC61850_QUALITY, /*Tipo de dado = Qualidade*/
+    0 + TRG_OPT_QUALITY_CHANGED, /*Gatilho para enviar uma mensagem quando a qualidade mudar*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_StcEfcPct_t = {
+    DataAttributeModelType,
+    "t",   /*Timestamp do dado*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct,
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct_units,
+    NULL, /*Não tem filhote, então é NULL*/
+    0, /*Tamanho fixo*/
+    IEC61850_FC_MX, /*FC = MX*/
+    IEC61850_TIMESTAMP, /*Tipo de dado = Timestamp*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_StcEfcPct_units = {
+    DataAttributeModelType,
+    "units",
+    (ModelNode*) &iedModel_BIKE_DSTK1_StcEfcPct,
+    NULL, /*Não tem irmão, então é NULL*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0,
+    IEC61850_FC_CF, /*FC = CF (Configuração)*/
+    IEC61850_VISIBLE_STRING_255, /*Tipo de dado = Visible String até 255 caracteres*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+/* ------------------- Data Object: OutDCV (CDC: MV) ------------------- */
+/*Representa a tensão contínua de saída do dispositivo*/
+
+DataObject iedModel_BIKE_DSTK1_OutDCV = {
+    DataObjectModelType,
+    "OutDCV",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV_instMag,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCV_instMag = {
+    DataAttributeModelType,
+    "instMag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV_mag,
+    NULL,
+    0,
+    IEC61850_FC_MX, /*FC = MX*/
+    IEC61850_FLOAT32, /*Tipo de dado = Float32*/
+    0,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCV_mag = {
+    DataAttributeModelType,
+    "mag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV_q,
+    NULL,
+    0,
+    IEC61850_FC_MX, /*FC = MX*/
+    IEC61850_FLOAT32, /*Tipo de dado = Float32*/
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE, /*Gatilho para enviar uma mensagem quando o valor mudar (dchg) ou for atualizado (dupd)*/
+    NULL, /*Sem valor inicial*/
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCV_q = {
+    DataAttributeModelType,
+    "q",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV_t,
+    NULL,
+    0, /*Tamanho fixo*/
+    IEC61850_FC_MX, /*FC = MX*/
+    IEC61850_QUALITY, /*Tipo de dado = Qualidade*/
+    0 + TRG_OPT_QUALITY_CHANGED, /*Gatilho para enviar uma mensagem quando a qualidade mudar*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCV_t = {
+    DataAttributeModelType,
+    "t",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV_units,
+    NULL, /*Não tem filhote, então é NULL*/
+    0, /*Tamanho fixo*/
+    IEC61850_FC_MX, /*FC = MX*/
+    IEC61850_TIMESTAMP, /*Tipo de dado = Timestamp*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCV_units = {
+    DataAttributeModelType,
+    "units",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCV,
+    NULL, /*Não tem irmão, então é NULL*/
+    NULL, /*Não tem filhote, então é NULL*/
+    0, /*Tamanho fixo*/
+    IEC61850_FC_CF, /*FC = CF*/
+    IEC61850_VISIBLE_STRING_255, /*Tipo de dado = Visible String até 255 caracteres*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+/* ------------------- Data Object: OutDCA (CDC: MV) ------------------- */
+/* É o valor medido CC que está saindo de um equipamento, ex uma bateria*/
+
+DataObject iedModel_BIKE_DSTK1_OutDCA = {
+    DataObjectModelType,
+    "OutDCA",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA_instMag,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCA_instMag = {
+    DataAttributeModelType,
+    "instMag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA_mag,
+    NULL, /*Não tem filhote, então é NULL*/
+    0, /*Tamanho fixo*/
+    IEC61850_FC_MX, /*FC = MX*/
+    IEC61850_FLOAT32, /*Tipo de dado = Float32*/
+    0, /*Sem gatilho*/
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCA_mag = {
+    DataAttributeModelType,
+    "mag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA_q,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_FLOAT32,
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCA_q = {
+    DataAttributeModelType,
+    "q",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA_t,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_QUALITY,
+    0 + TRG_OPT_QUALITY_CHANGED,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCA_t = {
+    DataAttributeModelType,
+    "t",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA_units,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_TIMESTAMP,
+    0,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutDCA_units = {
+    DataAttributeModelType,
+    "units",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutDCA,
+    NULL,
+    NULL,
+    0,
+    IEC61850_FC_CF,
+    IEC61850_VISIBLE_STRING_255,
+    0,
+    NULL,
+    0};
+
+/* ------------------- Data Object: InClTmp (CDC: MV) ------------------- */
+/* Representa o valor medido de temperatuta interna de uma célula medido em °C*/
+
+DataObject iedModel_BIKE_DSTK1_InClTmp = {
+    DataObjectModelType,
+    "InClTmp",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp_instMag,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_InClTmp_instMag = {
+    DataAttributeModelType,
+    "instMag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp_mag,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_FLOAT32,
+    0,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_InClTmp_mag = {
+    DataAttributeModelType,
+    "mag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp_q,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_FLOAT32,
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_InClTmp_q = {
+    DataAttributeModelType,
+    "q",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp_t,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_QUALITY,
+    0 + TRG_OPT_QUALITY_CHANGED,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_InClTmp_t = {
+    DataAttributeModelType,
+    "t",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp_units,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_TIMESTAMP,
+    0,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_InClTmp_units = {
+    DataAttributeModelType,
+    "units",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InClTmp,
+    NULL,
+    NULL,
+    0,
+    IEC61850_FC_CF,
+    IEC61850_VISIBLE_STRING_255,
+    0,
+    NULL,
+    0};
+
+/* ------------------- Data Object: OutClTmp (CDC: MV) ------------------- */
+/* Representa o valor medido de temperatuta externa de uma célula medido em °C*/
+
+DataObject iedModel_BIKE_DSTK1_OutClTmp = {
+    DataObjectModelType,
+    "OutClTmp",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp_instMag,
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_OutClTmp_instMag = {
+    DataAttributeModelType,
+    "instMag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp_mag,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_FLOAT32,
+    0,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutClTmp_mag = {
+    DataAttributeModelType,
+    "mag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp_q,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_FLOAT32,
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutClTmp_q = {
+    DataAttributeModelType,
+    "q",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp_t,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_QUALITY,
+    0 + TRG_OPT_QUALITY_CHANGED,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutClTmp_t = {
+    DataAttributeModelType,
+    "t",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp,
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp_units,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_TIMESTAMP,
+    0,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_OutClTmp_units = {
+    DataAttributeModelType,
+    "units",
+    (ModelNode*) &iedModel_BIKE_DSTK1_OutClTmp,
+    NULL,
+    NULL,
+    0,
+    IEC61850_FC_CF,
+    IEC61850_VISIBLE_STRING_255,
+    0,
+    NULL,
+    0};
+
+/* ------------------- Data Object: InH2Pres (CDC: MV) ------------------- */
+/* Representa o valor medido de pressão de hidrogênio dentro de uma célula, medido em Pa*/
+
+DataObject iedModel_BIKE_DSTK1_InH2Pres = {
+    DataObjectModelType,
+    "InH2Pres",
+    (ModelNode*) &iedModel_BIKE_DSTK1,
+    NULL, /*Não tem irmão, então é NULL*/
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres_instMag, /*Filhote, o primeiro DA definido dentro do DO.*/
+    0
+};
+
+DataAttribute iedModel_BIKE_DSTK1_InH2Pres_instMag = {
+    DataAttributeModelType,
+    "instMag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres_mag,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_FLOAT32,
+    0,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_InH2Pres_mag = {
+    DataAttributeModelType,
+    "mag",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres_q,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_FLOAT32,
+    0 + TRG_OPT_DATA_CHANGED + TRG_OPT_DATA_UPDATE,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_InH2Pres_q = {
+    DataAttributeModelType,
+    "q",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres_t,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_QUALITY,
+    0 + TRG_OPT_QUALITY_CHANGED,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_InH2Pres_t = {
+    DataAttributeModelType,
+    "t",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres,
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres_units,
+    NULL,
+    0,
+    IEC61850_FC_MX,
+    IEC61850_TIMESTAMP,
+    0,
+    NULL,
+    0};
+
+DataAttribute iedModel_BIKE_DSTK1_InH2Pres_units = {
+    DataAttributeModelType,
+    "units",
+    (ModelNode*) &iedModel_BIKE_DSTK1_InH2Pres,
+    NULL,
+    NULL,
+    0,
+    IEC61850_FC_CF,
+    IEC61850_VISIBLE_STRING_255,
+    0,
+    NULL,
+    0};
+
+/* ------------------- FIM (EU ACHO QUE É ISSO) ----------------*/
